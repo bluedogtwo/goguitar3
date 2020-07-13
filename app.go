@@ -9,6 +9,8 @@ import (
 
 const (
 	row  string = ".flex.items-center.bb.pb2.b--light-gray"
+	row2 string = ".flex.items-center.bb.pv2.b--light-gray"
+	// row  string = ".flex.items-center.bb"
 	band string = ".link.outline-0.source-sans-b.black.w-40.pr3.h2.flex.items-center"
 
 	// salary float64 = 50000.0
@@ -31,9 +33,9 @@ func main() {
 	// song
 
 	text := page.Element(row).Text()
-	fmt.Printf("Hello %s\n", text)
+	fmt.Printf("Test Hello %s\n", text)
 
-	for i, e := range page.Elements(row) {
+	for i, e := range page.Elements(row + "," + row2) {
 		fmt.Printf("%d \n", i)
 		temp := e.Element(band).Text()
 		fmt.Printf("%d %s\n", i, temp)
