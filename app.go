@@ -26,6 +26,9 @@ func main() {
 
 	fmt.Println("done1")
 
+	vv := page.Element(row).Text() // doesnt work if removed?
+	fmt.Printf("%s \n", vv)        //
+
 	for _, e := range page.Elements(row + "," + row2) {
 		bandPrint := e.Element(band).Text()
 
