@@ -10,10 +10,9 @@ import (
 const (
 	row  string = ".flex.items-center.bb.pb2.b--light-gray"
 	row2 string = ".flex.items-center.bb.pv2.b--light-gray"
-	// row  string = ".flex.items-center.bb"
-	band string = ".link.outline-0.source-sans-b.black.w-40.pr3.h2.flex.items-center"
 
-	// salary float64 = 50000.0
+	band string = ".link.outline-0.source-sans-b.black.w-40.pr3.h2.flex.items-center"
+	song string = ".black.db.w-40.pr2.source-sans.ttc.h2.flex.items-center"
 )
 
 func main() {
@@ -27,17 +26,12 @@ func main() {
 
 	fmt.Println("done1")
 
-	// Wait until css selector get the element then get the text content of it.
-	// band
-	// text := page.Element(".link.outline-0.source-sans-b.black.w-40.pr3.h2.flex.items-center").Text()
-	// song
+	for _, e := range page.Elements(row + "," + row2) {
+		bandPrint := e.Element(band).Text()
 
-	text := page.Element(row).Text()
-	fmt.Printf("Test Hello %s\n", text)
+		for _, es := range e.Elements(song) {
+			fmt.Printf("%s - %s\n", bandPrint, es.Text())
 
-	for i, e := range page.Elements(row + "," + row2) {
-		fmt.Printf("%d \n", i)
-		temp := e.Element(band).Text()
-		fmt.Printf("%d %s\n", i, temp)
+		}
 	}
 }
