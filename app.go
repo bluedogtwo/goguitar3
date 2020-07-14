@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"time"
 
 	"github.com/go-rod/rod"
@@ -16,18 +17,13 @@ const (
 )
 
 func main() {
+	log.Println("Start")
+
 	browser := rod.New().Connect()
 
 	defer browser.Close()
 
-	page := browser.Timeout(time.Minute).Page("https://www.fender.com/play/guitar/artists/songs")
-
-	page.Window(0, 0, 1200, 600)
-
-	fmt.Println("done1")
-
-	vv := page.Element(row).Text() // doesnt work if removed?
-	fmt.Printf("%s \n", vv)        //
+	page := browser.Timeout(time.Minute).Page("https://www.fender.com/play/guitar/artists/songs").WaitLoad()
 
 	for _, e := range page.Elements(row + "," + row2) {
 		bandPrint := e.Element(band).Text()
@@ -37,4 +33,6 @@ func main() {
 
 		}
 	}
+
+	log.Println("Stop")
 }
